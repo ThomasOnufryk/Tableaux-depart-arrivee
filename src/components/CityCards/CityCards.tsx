@@ -9,7 +9,6 @@ function CityCards() {
       {cities.map((city) => (
         <CityCard key={city} city={city} />
       ))}
-      )
     </div>
   );
 }

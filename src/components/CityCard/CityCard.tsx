@@ -1,19 +1,21 @@
 import './CityCard.scss';
-import images from '../../Public/';
+import { Link } from 'react-router-dom';
+
 interface CityCardProps {
   city: string;
 }
 
 function CityCard({ city }: CityCardProps) {
   return (
-    <div
+    <Link
+      to={`${city}`}
       className="city-card"
       style={{
         backgroundImage: `url("src/Public/images/${city}.webp")`,
       }}
     >
       <h3 className="city-card__name">{city}</h3>
-    </div>
+    </Link>
   );
 }
 

@@ -2,7 +2,7 @@ import './TrainStations.scss';
 import { NavLink } from 'react-router-dom';
 
 interface TrainStationsProps {
-  stations: object;
+  stations: string;
 }
 
 function TrainStations({ stations }: TrainStationsProps) {

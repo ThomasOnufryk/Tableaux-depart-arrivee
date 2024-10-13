@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { parseDate, getFullMinutes, calculateDelay } from './utils';
 import './Dapartures.scss';
 

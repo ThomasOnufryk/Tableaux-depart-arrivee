@@ -17,7 +17,7 @@ export const getFullMinutes = (date) => {
 export const calculateDelay = (baseDepartureTime, realDepartureTime) => {
   if (baseDepartureTime.getTime() !== realDepartureTime.getTime()) {
     const minutesDelay =
-      realDepartureTime.getTime() - baseDepartureTime.getTime() / (1000 * 60);
+      (realDepartureTime.getTime() - baseDepartureTime.getTime()) / (1000 * 60);
     if (minutesDelay > 60) {
       return `retard ${Math.floor(minutesDelay / 60)}h${minutesDelay % 60}`;
     }

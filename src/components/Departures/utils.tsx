@@ -10,9 +10,8 @@ export const parseDate = (apiDate) => {
 export const getFullMinutes = (date) => {
   if (date.getMinutes() < 10) {
     return `0${date.getMinutes()}`;
-  } else {
-    return date.getMinutes();
   }
+  return date.getMinutes();
 };
 
 export const calculateDelay = (baseDepartureTime, realDepartureTime) => {

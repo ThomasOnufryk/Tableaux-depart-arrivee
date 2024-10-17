@@ -1,9 +1,12 @@
 import './CityCards.scss';
 import stations from '../../gares.json';
 import CityCard from '../CityCard/CityCard';
+import { ICityStations } from '../../@types';
+
+type CityName = keyof ICityStations;
 
 function CityCards() {
-  const cities = Object.keys(stations);
+  const cities = Object.keys(stations) as CityName[];
   return (
     <div className="city-cards">
       {cities.map((city) => (

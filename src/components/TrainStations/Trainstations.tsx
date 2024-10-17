@@ -1,8 +1,10 @@
 import './TrainStations.scss';
 import { NavLink } from 'react-router-dom';
+import { ICityStations, IStationInfo } from '../../@types';
 
 interface TrainStationsProps {
-  stations: string;
+  stations: ICityStations[];
+  // stationName: IStationInfo[];
 }
 
 function TrainStations({ stations }: TrainStationsProps) {

@@ -4,7 +4,7 @@ import Departures from '../Departures/Departures';
 import './TrainStation.scss';
 
 function TrainStation() {
-  const [departureMode, setDepartureMode] = useState(true);
+  const [departureMode, setDepartureMode] = useState<boolean>(true);
   return (
     <div className="train-station">
       <div className="directions">

@@ -1,4 +1,4 @@
-export const parseDate = (apiDate) => {
+export const parseDate = (apiDate: string) => {
   const utcDate = apiDate.split('');
   utcDate.splice(4, 0, '-');
   utcDate.splice(7, 0, '-');
@@ -7,14 +7,17 @@ export const parseDate = (apiDate) => {
   return new Date(utcDate.join(''));
 };
 
-export const getFullMinutes = (date) => {
+export const getFullMinutes = (date: Date) => {
   if (date.getMinutes() < 10) {
     return `0${date.getMinutes()}`;
   }
   return date.getMinutes();
 };
 
-export const calculateDelay = (baseDepartureTime, realDepartureTime) => {
+export const calculateDelay = (
+  baseDepartureTime: Date,
+  realDepartureTime: Date,
+) => {
   if (baseDepartureTime.getTime() !== realDepartureTime.getTime()) {
     const minutesDelay =
       (realDepartureTime.getTime() - baseDepartureTime.getTime()) / (1000 * 60);

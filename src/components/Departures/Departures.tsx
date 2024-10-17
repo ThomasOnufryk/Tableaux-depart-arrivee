@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { parseDate, getFullMinutes, calculateDelay } from './utils';
+import { Ideparture } from '../../@types';
 import './Dapartures.scss';
 
 function Departures() {
   const { codeStation } = useParams();
-  const [nextDepartures, setNextDepartures] = useState([]);
-  async function getApiDatas() {
+  const [nextDepartures, setNextDepartures] = useState<Ideparture[]>([]);
+  const getApiDatas = useCallback(async () => {
     const apiKey = import.meta.env.VITE_API_KEY;
     const response = await fetch(
       `https://api.sncf.com/v1/coverage/sncf/stop_areas/${codeStation}/departures`,
@@ -32,10 +33,11 @@ function Departures() {
     }));
     console.log(apiDeparture);
     setNextDepartures(apiDeparture);
-  }
+  }, []);
+
   useEffect(() => {
     getApiDatas();
-  }, [codeStation]);
+  }, [codeStation, getApiDatas]);
 
   const [isTimeDisplayed, setIsTimeDisplayed] = useState(true);
 

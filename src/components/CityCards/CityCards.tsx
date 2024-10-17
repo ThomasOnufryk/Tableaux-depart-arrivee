@@ -1,7 +1,9 @@
 import './CityCards.scss';
-import stations from '../../gares.json';
+import stationsDatas from '../../gares.json';
 import CityCard from '../CityCard/CityCard';
 import { ICityStations } from '../../@types';
+
+const stations: ICityStations = stationsDatas;
 
 type CityName = keyof ICityStations;
 

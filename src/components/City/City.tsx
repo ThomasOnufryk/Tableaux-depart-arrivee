@@ -2,21 +2,17 @@ import './City.scss';
 import { Outlet, useParams, NavLink } from 'react-router-dom';
 import TrainStations from '../TrainStations/Trainstations';
 import { ICityStations } from '../../@types';
-import stations from '../../gares.json';
+import stationsDatas from '../../gares.json';
 
-type CityParams = {
-  // stations: ICityStations[];
-  city?: string; // On déclare un type pour le paramètre `city`
-};
+const stations: ICityStations = stationsDatas;
 
 function City() {
-  const { city } = useParams<CityParams>();
+  const { city } = useParams();
 
-  // if (!city || !(city in stations)) {
-  //   return <div>Ville inconnue</div>;
-  // }
-
-  // const cityKey = city as keyof ICityStations;
+  if (!city || !(city in stations)) {
+    return <div>Ville inconnue</div>;
+  }
+  const cityKey: keyof ICityStations = city;
 
   return (
     <div className="city">
@@ -24,7 +20,7 @@ function City() {
         Accueil
       </NavLink>
       <h2 className="city__name">{city}</h2>
-      <TrainStations stations={stations[city]} />
+      <TrainStations stations={stations[cityKey]} />
       <Outlet />
     </div>
   );

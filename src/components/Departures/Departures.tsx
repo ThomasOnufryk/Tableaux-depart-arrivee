@@ -18,7 +18,7 @@ function Departures() {
       },
     );
     const data = await response.json();
-    const apiDeparture = data.departures.map((departure) => ({
+    const apiDeparture = data.departures.map((departure: any) => ({
       id: departure.links[1].id,
       operator: '',
       transportationMode: departure.display_informations.network,

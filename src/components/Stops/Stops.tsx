@@ -1,5 +1,5 @@
 import './Stops.scss';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { extractStationId } from '../Departures/utils';
 interface StopsProps {
@@ -13,8 +13,11 @@ function Stops({ idDeparture }: StopsProps) {
     return <div>Station code non disponible</div>; // Un rendu alternatif en cas d'erreur
   }
   const [nextStations, setNextStations] = useState<string[]>([]);
+  const [isLoading, setIsloading] = useState(true);
+  const stopsRef = useRef<HTMLUListElement>(null);
 
   const getStops = useCallback(async () => {
+    setIsloading(true);
     const apiKey = import.meta.env.VITE_API_KEY;
     const response = await fetch(
       `https://api.sncf.com/v1/coverage/sncf/vehicle_journeys/${idDeparture}`,
@@ -38,32 +41,61 @@ function Stops({ idDeparture }: StopsProps) {
       .map((stop: any) => stop.stop_point.name);
 
     setNextStations(remainStops);
-  }, []);
+    setIsloading(false);
+  }, [codeStation, idDeparture]);
 
   useEffect(() => {
     getStops();
-  }, [getStops, codeStation]);
+  }, [getStops]);
 
+  useEffect(() => {
+    if (stopsRef.current && !isLoading) {
+      const scrollWidth = stopsRef.current.scrollWidth;
+      const duration = Math.max(scrollWidth / 150, 20); // Au moins 30 secondes
+      stopsRef.current.style.animationDuration = `${duration}s`;
+    }
+  }, [nextStations, isLoading]);
+
+  if (isLoading) {
+    return <div className="departure__stops">Chargement des arrêts...</div>;
+  }
+
+  if (nextStations.length === 0) {
+    return <div className="departure__stops">Aucun arrêt suivant</div>;
+  }
+
+  const renderStationBlock = (stations: string[], blockIndex: number) => (
+    <div key={`block-${blockIndex}`} className="stops__block">
+      {stations.map((stop, index) => (
+        <li
+          className="stops__station"
+          key={`station-${blockIndex}-${index}-${stop}`}
+        >
+          {stop}
+          <img
+            src="/src/Public/images/yellow.jpg"
+            alt="yellow point"
+            style={{
+              display: index === stations.length - 1 ? 'none' : 'inline',
+            }}
+          />
+        </li>
+      ))}
+      {blockIndex < 3 && (
+        <li className="stops__separator" key={`separator-${blockIndex}`}>
+          <p id="spanList">Gares desservies : </p>
+        </li>
+      )}
+    </div>
+  );
+
+  // On crée quatre blocs de stations
   return (
     <div className="departure__stops">
-      <ul
-        className="stops"
-        style={{
-          animationDuration: `${nextStations.length <= 2 ? '0' : nextStations.length * 2.5}s`,
-        }}
-      >
-        {nextStations.map((stop, index) => (
-          <li className="stops__station" key={stop}>
-            {stop}
-            <img
-              src="/src/Public/images/yellow.jpg"
-              alt="yellow point"
-              style={{
-                display: `${index === nextStations.length - 1 ? 'none' : 'inline'}`,
-              }}
-            />
-          </li>
-        ))}
+      <ul className="stops" ref={stopsRef}>
+        {[0, 1, 2, 3].map((blockIndex) =>
+          renderStationBlock(nextStations, blockIndex),
+        )}
       </ul>
     </div>
   );

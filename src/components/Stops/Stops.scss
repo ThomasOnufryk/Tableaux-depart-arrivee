@@ -1,15 +1,95 @@
-.stops {
-  display: flex;
-  align-items: center;
-  animation: scrollText  linear infinite;
+// .stops {
+//   display: flex;
+//   align-items: center;
+//   animation: scrollText  linear infinite;
+// }
+
+// @keyframes scrollText {
+//   0% {
+//       transform: translate(100%, 0);
+//   }
+
+//   100% {
+//       transform: translate(-220%, 0);
+//   }
+// }
+.departure__stops {
+    position: relative;
+  white-space: nowrap;
+  grid-column-start: 2;
+  grid-column-end: span 3;
+  grid-row-start: 3;
+  grid-row-end: span 1;
+  overflow: hidden;
+
+  li {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+
+    @media screen and (max-width: 750px) {
+        font-size: 1rem;
+    }
+
+    img {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-left: 0.5rem;
+    }
+  }
 }
 
-@keyframes scrollText {
-  0% {
-      transform: translate(100%, 0);
+.stops {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  animation: scroll-stops 20s linear infinite; // Réduit de 30s à 20s
+  white-space: nowrap;
+  will-change: transform;
+
+  &__station {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    
+    img {
+      margin-left: 8px;
+      width: 8px;
+      height: 8px;
+    }
   }
 
-  100% {
-      transform: translate(-220%, 0);
+  &__block {
+    display: flex;
+    align-items: center;
+  }
+
+  &__separator {
+    font-weight: normal;
+    color: #8DE8FE;
+    margin: 0 100px;
+    padding: 0 15px;
+    width: auto;
+    height: auto;
+    background-color: #ffd9006e; // Couleur dorée pour matcher le point jaune
+    // border-radius: 50%;
+    display: inline-block;
+    box-shadow: black 1px 1px 2px;
+    #spanList {
+      font-size: 0.8em;
+    }
+   
+  }
+}
+
+@keyframes scroll-stops {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }

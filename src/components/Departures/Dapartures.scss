@@ -87,28 +87,5 @@
       font-weight: 700;
   }
 
-  &__stops {
-      white-space: nowrap;
-      grid-column-start: 2;
-      grid-column-end: span 3;
-      grid-row-start: 3;
-      grid-row-end: span 1;
-      overflow: hidden;
-
-      li {
-          margin-right: 0.5rem;
-          font-size: 1.2rem;
-
-          @media screen and (max-width: 750px) {
-              font-size: 1rem;
-          }
-
-          img {
-              width: 10px;
-              height: 10px;
-              border-radius: 50%;
-              margin-left: 0.5rem;
-          }
-      }
-  }
+  
 }

@@ -28,3 +28,8 @@ export const calculateDelay = (
   }
   return "à l'heure";
 };
+
+export const extractStationId = (id: string) => {
+  const parts = id.split(':');
+  return parts[2];
+};

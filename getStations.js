@@ -21,4 +21,4 @@ const searchStationByName = async (stationName) => {
   const data = await response.json();
   console.log(data);
 };
-searchStationByName("Paris");
+searchStationByName("nazaire");

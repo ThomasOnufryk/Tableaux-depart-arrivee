@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Departures from '../Departures/Departures';
+import Arrials from '../Arrivals/Arrivals';
 
 import './TrainStation.scss';
 
@@ -26,6 +27,7 @@ function TrainStation() {
         </button>
       </div>
       {departureMode && <Departures />}
+      {!departureMode && <Arrials />}
     </div>
   );
 }

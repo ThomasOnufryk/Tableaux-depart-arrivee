@@ -1,8 +1,9 @@
+import './Dapartures.scss';
 import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { parseDate, getFullMinutes, calculateDelay } from './utils';
 import { Ideparture } from '../../@types';
-import './Dapartures.scss';
+import Stops from '../Stops/Stops';
 
 function Departures() {
   const { codeStation } = useParams();
@@ -77,6 +78,7 @@ function Departures() {
             )}
           </p>
           <p className="departure__destination">{departure.destination}</p>
+          <Stops idDeparture={departure.id} />
         </div>
       ))}
     </div>

@@ -19,6 +19,9 @@
   "nantes": {
     "Gare de Nantes": "stop_area:SNCF:87481002"
   },
+  "rennes": {
+    "Gare de Rennes": "stop_area:SNCF:87471003"
+  },
   "paris": {
     "Gare de Lyon": "stop_area:SNCF:87686006",
     "Gare de Lyon Noctilien": "stop_area:SNCF:87588202",
@@ -35,6 +38,9 @@
   },
   "toulouse": {
     "Toulouse Matabiau": "stop_area:SNCF:87611004"
+  },
+  "saint nazaire": {
+    "Gare de Saint-Nazaire": "stop_area:SNCF:87481705"
   },
   "le pouliguen": {
     "Le Pouliguen": "stop_area:SNCF:87481762"

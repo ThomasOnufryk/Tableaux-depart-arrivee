@@ -32,7 +32,6 @@ function Departures() {
       ),
       destination: departure.display_informations.direction.split(' (')[0],
     }));
-    console.log(apiDeparture);
     setNextDepartures(apiDeparture);
   }, []);
 

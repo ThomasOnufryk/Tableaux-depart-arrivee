@@ -16,7 +16,7 @@ function City() {
 
   return (
     <div className="city">
-      <NavLink className="train-stations__link" to={'/'}>
+      <NavLink className="train-stations__link home_button" to={'/'}>
         Accueil
       </NavLink>
       <h2 className="city__name">{city}</h2>

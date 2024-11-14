@@ -51,7 +51,7 @@ function Stops({ idDeparture }: StopsProps) {
   useEffect(() => {
     if (stopsRef.current && !isLoading) {
       const scrollWidth = stopsRef.current.scrollWidth;
-      const duration = Math.max(scrollWidth / 150, 30); // Au moins 30 secondes
+      const duration = Math.max(scrollWidth / 90, 30); // Au moins 30 secondes
       stopsRef.current.style.animationDuration = `${duration}s`;
     }
   }, [nextStations, isLoading]);

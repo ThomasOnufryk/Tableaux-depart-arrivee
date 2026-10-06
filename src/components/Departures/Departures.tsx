@@ -11,7 +11,7 @@ function Departures() {
   const getApiDatas = useCallback(async () => {
     const apiKey = import.meta.env.VITE_API_KEY;
     const response = await fetch(
-      `https://api.sncf.com/v1/coverage/sncf/stop_areas/${codeStation}/departures`,
+      `https://api.sncf.com/v1/coverage/sncf/stop_areas/${codeStation}/departures?forbidden_uris[]=network:SNCF:TNRER&data_freshness=realtime`,
       {
         headers: {
           Authorization: `${apiKey}`,
@@ -20,7 +20,7 @@ function Departures() {
     );
     const data = await response.json();
     const apiDeparture = data.departures.map((departure: any) => ({
-      id: departure.links[1].id,
+      id: departure.links.find(l => l.type === "vehicle_journey").id,
       operator: '',
       transportationMode: departure.display_informations.network,
       trainNumber: departure.display_informations.headsign,

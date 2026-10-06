@@ -20,7 +20,7 @@ function Departures() {
     );
     const data = await response.json();
     const apiDeparture = data.departures.map((departure: any) => ({
-      id: departure.links.find(l => l.type === "vehicle_journey").id,
+      id: departure.links.find((l: any) => l.type === "vehicle_journey").id,
       operator: '',
       transportationMode: departure.display_informations.network,
       trainNumber: departure.display_informations.headsign,
